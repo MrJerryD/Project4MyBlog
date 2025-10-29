@@ -15,8 +15,7 @@ public class MainController  {
 
     @GetMapping("/about")
     public String about(Model model) {
-        model.addAttribute("title", "About page"); // поменял текст, чтобы отличать
-        return "home"; // используем тот же шаблон home.html
+        model.addAttribute("title", "page about us"); // поменял текст, чтобы отличать
+        return "about"; // используем тот же шаблон home.html
     }
-
 }

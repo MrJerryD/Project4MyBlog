@@ -8,17 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="mb-auto">
-        <div><h3 class="float-md-start mb-0">BLog</h3>
-            <nav class="nav nav-masthead justify-content-center float-md-end">
-                <a class="nav-link fw-bold py-1 px-3 active" aria-current="page" href="#">General</a>
-                <a class="nav-link fw-bold py-1 px-3" href="#">Blog</a>
-                <a class="nav-link fw-bold py-1 px-3" href="#">About us</a>
-            </nav>
-        </div>
-    </header>
-</div>
+<header th:insert="blocks/header :: header"></header>
 <main>
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
@@ -209,11 +199,6 @@
         </div>
     </div>
 </main>
-<footer class="text-body-secondary py-5">
-    <div class="container"><p class="float-end mb-1"><a href="#">Back to top</a></p>
-        <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
-        <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
-                href="/docs/5.3/getting-started/introduction">getting started guide</a>.</p></div>
-</footer>
+<div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>
