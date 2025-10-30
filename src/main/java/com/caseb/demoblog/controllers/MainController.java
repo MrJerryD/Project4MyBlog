@@ -18,4 +18,6 @@ public class MainController  {
         model.addAttribute("title", "page about us"); // поменял текст, чтобы отличать
         return "about"; // используем тот же шаблон home.html
     }
+
+
 }
