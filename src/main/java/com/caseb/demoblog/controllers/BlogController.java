@@ -51,8 +51,45 @@ public class BlogController {
         ArrayList<Post> result = new ArrayList<>();
         post.ifPresent(result::add);
         model.addAttribute("post", result);
-
         return "blog-details";
+    }
+
+    /*отслеживаем url адресс*/
+    @GetMapping("/blog/{id}/edit")
+    public String blogEdit(@PathVariable(value = "id") long idPost, Model model) {
+        Optional<Post> post = postRepository.findById(idPost);
+
+        if (post.isEmpty()) {
+            return "redirect:/blog"; // поста нет — редирект на главную блог-страницу
+        }
+
+        // пост есть — кладём его в список, если шаблон ожидает список
+        ArrayList<Post> result = new ArrayList<>();
+        post.ifPresent(result::add);
+        model.addAttribute("post", result);
+        return "blog-edit";
+    }
+
+    @PostMapping("/blog/{id}/edit")
+    public String blogPostUpdate(@PathVariable(value = "id") long idPost,
+                                 @RequestParam String title,
+                                 @RequestParam String anons,
+                                 @RequestParam String full_text,
+                                 Model model) {
+        Post post = postRepository.findById(idPost).orElseThrow();
+        post.setTitle(title);
+        post.setAnons(anons);
+        post.setFull_text(full_text);
+        postRepository.save(post);
+
+        return "redirect:/blog";
+    }
+
+    @GetMapping("/blog/{id}/remove")
+    public String blogPostDelete(@PathVariable(value = "id") long idPost, Model model) {
+        Post post = postRepository.findById(idPost).orElseThrow();
+        postRepository.delete(post);
+        return "redirect:/blog";
     }
 
 
